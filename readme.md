@@ -1,6 +1,10 @@
 ![icon](icon_0.png)
 
-此 repo 從 [php_push_ios_gcm](https://github.com/jhaoheng/php_push_ios_gcm) 切割而來
+## Readme
+
+- 此 repo 從 [php_push_ios_gcm](https://github.com/jhaoheng/php_push_ios_gcm) 切割而來
+- 可與 [APNS_cer_build](https://github.com/jhaoheng/APNS_cer_build) 搭配測試使用
+- 目的 : 透過 app 檢查憑證與 token 之間是否正確配對，並可傳送
 
 ## USE KIT
 
