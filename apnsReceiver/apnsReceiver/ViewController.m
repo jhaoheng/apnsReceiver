@@ -107,8 +107,6 @@
     NSLog(@"CFBundleVersion : %@",[infoDictionary objectForKey:@"CFBundleVersion"]);
     NSLog(@"CFBundleShortVersionString : %@",[infoDictionary objectForKey:@"CFBundleShortVersionString"]);
     
-    
-    
     //
     CGFloat tokenT_ori_h = CGRectGetMaxY(self.navigationController.navigationBar.frame);
     UILabel *tokenTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, tokenT_ori_h+10, CGRectGetWidth(self.view.frame)-20, 0)];
@@ -124,38 +122,15 @@
     token_label.text = @"hello, wait to get token.";
     [self.view addSubview:token_label];
 
-//    //uibutton mail token
-//    UIButton *mailTokenToSelf_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    mailTokenToSelf_btn.frame = CGRectMake(10, CGRectGetMaxY(token_label.frame)+10, (CGRectGetWidth(self.view.frame)-30)/3, 44);
-//    [mailTokenToSelf_btn setTitle:@"mail Token" forState:UIControlStateNormal];
-//    [mailTokenToSelf_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [mailTokenToSelf_btn addTarget:self action:@selector(pass_activity:) forControlEvents:UIControlEventTouchUpInside];
-//    mailTokenToSelf_btn.layer.cornerRadius = 10;
-//    mailTokenToSelf_btn.layer.borderColor = [UIColor blackColor].CGColor;
-//    mailTokenToSelf_btn.layer.borderWidth = .5;
-//    mailTokenToSelf_btn.titleLabel.font = [UIFont systemFontOfSize:12];
-//    [self.view addSubview:mailTokenToSelf_btn];
-//    
-//    //uibutton apiback token
-//    UIButton *apibackToken_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    apibackToken_btn.frame = CGRectMake(CGRectGetMaxX(mailTokenToSelf_btn.frame)+5, CGRectGetMaxY(token_label.frame)+10, (CGRectGetWidth(self.view.frame)-30)/3, 44);
-//    [apibackToken_btn setTitle:@"apiback token" forState:UIControlStateNormal];
-//    [apibackToken_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [apibackToken_btn addTarget:self action:@selector(apiToken_activity:) forControlEvents:UIControlEventTouchUpInside];
-//    apibackToken_btn.layer.cornerRadius = 10;
-//    apibackToken_btn.layer.borderColor = [UIColor blackColor].CGColor;
-//    apibackToken_btn.layer.borderWidth = .5;
-//    apibackToken_btn.titleLabel.font = [UIFont systemFontOfSize:12];
-//    [self.view addSubview:apibackToken_btn];
-//    
-//    
-//    
-//    //log scroll view
+    
+    //log scroll view
     [self init_logView];
     
     //
     [self init_slideView];
-
+ 
+    //
+    self.title = [self check_Mobileprovision];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -381,6 +356,55 @@
 {
     NSArray *array = [[NSArray alloc] init];
     NSLog(@"%@",[array objectAtIndex:1]);
+}
+
+#pragma mark - 檢查 ipa 證書類別
+- (NSString *)check_Mobileprovision{
+    
+    NSLog(@"========");
+    NSData *provisioningProfile = nil;
+    NSData *raw = [NSData dataWithContentsOfURL:[NSBundle.mainBundle URLForResource:@"embedded" withExtension:@"mobileprovision"]];
+    char *start = memmem(raw.bytes,
+                         raw.length,
+                         "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0",
+                         47);
+    if (start) {
+        char *end = memmem(start,
+                           (uintptr_t)start - raw.length,
+                           "</plist>",
+                           8);
+        if (end) {
+            provisioningProfile = [NSData dataWithBytes:start length:8 + end - start];
+        }
+    }
+    
+    NSString *provision;
+    if (provisioningProfile) {
+        NSDictionary* plist = [NSPropertyListSerialization propertyListWithData:provisioningProfile
+                                                                        options:NSPropertyListImmutable
+                                                                         format:0
+                                                                          error:0];
+        NSLog(@"\n\n\nTeam name: %@", plist[@"TeamName"]);
+        
+        if ([plist[@"ProvisionsAllDevices"] boolValue]) {
+            NSLog(@"Enterprise");
+            provision = @"Enterprise";
+        } else if ([plist[@"ProvisionedDevices"] count] > 0) {
+            if ([plist[@"Entitlements"][@"get-task-allow"] boolValue]) {
+                NSLog(@"Development");
+                provision = @"Development";
+            } else {
+                NSLog(@"Ad Hoc");
+                provision = @"Ad Hoc";
+            }
+        } else {
+            NSLog(@"App Store");
+            provision = @"App Store";
+        }
+    }
+    NSLog(@"========");
+    
+    return provision;
 }
 
 @end

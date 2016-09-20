@@ -7,12 +7,18 @@
 - [AFNetworking 3.0](http://cocoadocs.org/docsets/AFNetworking/3.0.4/)
 - [slideMenu](https://github.com/jhaoheng/slideMenu_ios)
 
-## TODO
+## Feature
 
-- 手動增加 api 位置
-- 透過 api 傳送 token or 傳送 mail 給用戶
+1. 查看目前 ipa 的版本為
+	- developement
+	- Ad-Hoc
+	- App Store
+	- Enterprise
+2. 查看 token
+3. 寄送 token
+4. 接收 push
 
 ## view
 
-![img](IMG_1.png)
-![img](IMG_2.png)
+![img](IMG_3.png)
+![img](IMG_4.png)
