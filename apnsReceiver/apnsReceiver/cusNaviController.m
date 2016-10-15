@@ -10,31 +10,10 @@
 
 @implementation cusNaviController
 
-@synthesize description = _description;
-
-- (void)setNaviBtnOn:(UIViewController *)naviBtnOn
-{
-    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(0, 0, 30, 30);
-    menuBtn.backgroundColor = [UIColor clearColor];
-    [menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    [menuBtn addTarget:self action:@selector(menu_activity:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:menuBtn];
-    [naviBtnOn.navigationItem setLeftBarButtonItem:leftBtn];
-    
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
-    
-    UIImage *NavigationBackground = [[UIImage imageNamed:@"navi_bg"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(0.1, 0.1, 0, 0.1)
-                                     resizingMode:UIImageResizingModeStretch];
-    
-    [[UINavigationBar appearance] setBackgroundImage:NavigationBackground forBarMetrics:UIBarMetricsDefault];
+    self.delegate = self;
 }
 
 
@@ -43,24 +22,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
-#pragma mark - menu action btn
-- (void)menu_activity:(id)sender
-{
+#pragma mark - delegate
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
     
-    if (!slideController.is_lock) {
-        [slideViewController switchSlideMove];
+    if(navigationController.viewControllers.count != 1) { // not the root controller - show back button instead
+        return;
     }
+    UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+                                                                              target:self
+                                                                              action:@selector(infoItem:)];
+    [viewController.navigationItem setLeftBarButtonItem:infoItem];
+    
+    UIBarButtonItem *sendItem = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(send:)];
+    [viewController.navigationItem setRightBarButtonItem:sendItem];
+}
+
+#pragma mark - info
+- (void)infoItem:(id)sender
+{
+    infoViewController *infoView = [[infoViewController alloc] init];
+    [UIView transitionWithView:self.view
+                      duration:0.75
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+                        [self pushViewController:infoView animated:NO];
+                    }
+                    completion:nil];
+}
+
+#pragma mark - send
+- (void)send:(id)sneder{
+    
 }
 
 @end

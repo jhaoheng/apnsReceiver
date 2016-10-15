@@ -18,35 +18,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-        //#ifdef __IPHONE_8_0
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-            
-            //Right, that is the point
-            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
-                                                                                                 |UIRemoteNotificationTypeSound
-                                                                                                 |UIRemoteNotificationTypeAlert) categories:nil];
-            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        }
-        else
-        {
-            
-            UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-        }
-    //#else
-    //register to receive notifications
-    //#endif
-    
+        //Right, that is the point
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
+                                                                                             |UIRemoteNotificationTypeSound
+                                                                                             |UIRemoteNotificationTypeAlert) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
     
     application.idleTimerDisabled = YES;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     baseView = [[ViewController alloc] init];
+    infoView = [[infoViewController alloc] init];
     
-//    cusNaviController *navi = [[cusNaviController alloc] initWithRootViewController:temp];
-//    navi.naviBtnOn = temp;//set cus btn
-    self.window.rootViewController = baseView;
+    cusNaviController *navi = [[cusNaviController alloc] initWithRootViewController:baseView];
+    self.window.rootViewController = navi;
     
     return YES;
 }

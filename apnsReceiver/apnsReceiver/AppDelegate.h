@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
 #import "ViewController.h"
+#import "infoViewController.h"
+#import "cusNaviController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     ViewController *baseView;
+    infoViewController *infoView;
 }
 
 @property (strong, nonatomic) UIWindow *window;

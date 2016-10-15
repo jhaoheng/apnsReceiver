@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "slideViewController.h"
+#import "infoViewController.h"
 
-@interface cusNaviController : UINavigationController
-@property (nonatomic, strong) UIViewController *naviBtnOn;
-@property (nonatomic) NSString *description;
+@interface cusNaviController : UINavigationController<UINavigationControllerDelegate>
 
-- (void)menu_activity:(id)sender;
 
 @end

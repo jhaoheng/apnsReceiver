@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9207CB031DB25D2700393857 /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9207CB021DB25D2700393857 /* infoViewController.m */; };
+		9207CB061DB2659600393857 /* cusNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9207CB051DB2659600393857 /* cusNaviController.m */; };
 		9247AE1F1D011FF3006B5050 /* http_manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9247AE1E1D011FF3006B5050 /* http_manager.m */; };
 		92F16C491CAAE60F00D3FE0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16C481CAAE60F00D3FE0B /* main.m */; };
 		92F16C4C1CAAE60F00D3FE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16C4B1CAAE60F00D3FE0B /* AppDelegate.m */; };
@@ -26,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9207CB011DB25D2700393857 /* infoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
+		9207CB021DB25D2700393857 /* infoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
+		9207CB041DB2659600393857 /* cusNaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cusNaviController.h; sourceTree = "<group>"; };
+		9207CB051DB2659600393857 /* cusNaviController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cusNaviController.m; sourceTree = "<group>"; };
 		9247AE1D1D011FF3006B5050 /* http_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_manager.h; sourceTree = "<group>"; };
 		9247AE1E1D011FF3006B5050 /* http_manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = http_manager.m; sourceTree = "<group>"; };
 		92F16C441CAAE60F00D3FE0B /* apnsReceiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apnsReceiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +110,10 @@
 				92F16C4B1CAAE60F00D3FE0B /* AppDelegate.m */,
 				92F16C4D1CAAE60F00D3FE0B /* ViewController.h */,
 				92F16C4E1CAAE60F00D3FE0B /* ViewController.m */,
+				9207CB011DB25D2700393857 /* infoViewController.h */,
+				9207CB021DB25D2700393857 /* infoViewController.m */,
+				9207CB041DB2659600393857 /* cusNaviController.h */,
+				9207CB051DB2659600393857 /* cusNaviController.m */,
 				92F16C531CAAE60F00D3FE0B /* Assets.xcassets */,
 				92F16C581CAAE60F00D3FE0B /* Info.plist */,
 				92F16C471CAAE60F00D3FE0B /* Supporting Files */,
@@ -251,6 +261,8 @@
 				92F16C491CAAE60F00D3FE0B /* main.m in Sources */,
 				9247AE1F1D011FF3006B5050 /* http_manager.m in Sources */,
 				92F16CA81CAB7EE100D3FE0B /* AFSecurityPolicy.m in Sources */,
+				9207CB061DB2659600393857 /* cusNaviController.m in Sources */,
+				9207CB031DB25D2700393857 /* infoViewController.m in Sources */,
 				92F16CA91CAB7EE100D3FE0B /* AFURLRequestSerialization.m in Sources */,
 				92F16CAA1CAB7EE100D3FE0B /* AFURLResponseSerialization.m in Sources */,
 				92F16CA61CAB7EE100D3FE0B /* AFHTTPSessionManager.m in Sources */,
@@ -353,7 +365,7 @@
 				CODE_SIGN_ENTITLEMENTS = apnsReceiver/apnsReceiver.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = apnsReceiver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.max.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,7 +379,7 @@
 				CODE_SIGN_ENTITLEMENTS = apnsReceiver/apnsReceiver.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = apnsReceiver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.max.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

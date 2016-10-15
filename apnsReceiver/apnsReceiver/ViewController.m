@@ -126,8 +126,6 @@
     //log scroll view
     [self init_logView];
  
-    //
-    self.title = [self check_Mobileprovision];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -317,53 +315,6 @@
     NSLog(@"%@",[array objectAtIndex:1]);
 }
 
-#pragma mark - 檢查 ipa 證書類別
-- (NSString *)check_Mobileprovision{
-    
-    NSLog(@"========");
-    NSData *provisioningProfile = nil;
-    NSData *raw = [NSData dataWithContentsOfURL:[NSBundle.mainBundle URLForResource:@"embedded" withExtension:@"mobileprovision"]];
-    char *start = memmem(raw.bytes,
-                         raw.length,
-                         "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0",
-                         47);
-    if (start) {
-        char *end = memmem(start,
-                           (uintptr_t)start - raw.length,
-                           "</plist>",
-                           8);
-        if (end) {
-            provisioningProfile = [NSData dataWithBytes:start length:8 + end - start];
-        }
-    }
-    
-    NSString *provision;
-    if (provisioningProfile) {
-        NSDictionary* plist = [NSPropertyListSerialization propertyListWithData:provisioningProfile
-                                                                        options:NSPropertyListImmutable
-                                                                         format:0
-                                                                          error:0];
-        NSLog(@"\n\n\nTeam name: %@", plist[@"TeamName"]);
-        
-        if ([plist[@"ProvisionsAllDevices"] boolValue]) {
-            NSLog(@"Enterprise");
-            provision = @"Enterprise";
-        } else if ([plist[@"ProvisionedDevices"] count] > 0) {
-            if ([plist[@"Entitlements"][@"get-task-allow"] boolValue]) {
-                NSLog(@"Development");
-                provision = @"Development";
-            } else {
-                NSLog(@"Ad Hoc");
-                provision = @"Ad Hoc";
-            }
-        } else {
-            NSLog(@"App Store");
-            provision = @"App Store";
-        }
-    }
-    NSLog(@"========");
-    
-    return provision;
-}
+
 
 @end
