@@ -1,4 +1,4 @@
-![icon](icon_0.png)
+![icon](icon_180.png)
 
 ## Readme
 
@@ -9,20 +9,26 @@
 ## USE KIT
 
 - [AFNetworking 3.0](http://cocoadocs.org/docsets/AFNetworking/3.0.4/)
-- [slideMenu](https://github.com/jhaoheng/slideMenu_ios)
 
 ## Feature
 
-1. 查看目前 ipa 的版本為
-	- developement
-	- Ad-Hoc
-	- App Store
-	- Enterprise
-2. 查看 token
-3. 寄送 token
-4. 接收 push
+1. info
+	- bundle_id
+	- ver
+	- show Porvision
+		- development
+		- Ad-Hoc
+		- App Store
+		- Enterprise
+2. send token
+	- copy
+	- email
+	- sms
+	- api (need use run nodejs server, see repo package `nodejs_rest`)
+3. see Notificaion info
 
 ## view
 
-![img](IMG_3.png)
-![img](IMG_4.png)
+![img](assets/img_1.png)
+![img](assets/img_2.png)
+![img](assets/img_3.png)
