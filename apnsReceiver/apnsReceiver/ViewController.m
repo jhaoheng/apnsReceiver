@@ -280,13 +280,6 @@
     }
 }
 
-#pragma maek - memory leak test
-- (void)leak
-{
-    NSArray *array = [[NSArray alloc] init];
-    NSLog(@"%@",[array objectAtIndex:1]);
-}
-
 
 
 @end
