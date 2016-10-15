@@ -68,7 +68,10 @@
     }];
     [alertController addAction:emailAction];
     
-    UIAlertAction *smsAction = [UIAlertAction actionWithTitle:@"SMS" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *smsAction = [UIAlertAction actionWithTitle:@"SMS" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self sms];
+        [self alertOfTextTitle:@"Send token" do:@"SMS" textHint:@"Enter phone number"];
+    }];
     [alertController addAction:smsAction];
     
     UIAlertAction *apiAction = [UIAlertAction actionWithTitle:@"API" style:UIAlertActionStyleDefault handler:nil];
@@ -114,18 +117,80 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark sms
+//觸發的btn
+- (void)sms:(NSString *)phoneNumber
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    
+    //判斷裝置是否在可傳送訊息的狀態
+    if([MFMessageComposeViewController canSendText]) {
+        
+        //設定SMS訊息內容
+        controller.body = _pushtoken;
+        
+        //設定接傳送對象的號碼
+        controller.recipients = [NSArray arrayWithObjects:phoneNumber,nil];
+        
+        //設定代理
+        controller.messageComposeDelegate = self;
+        
+        //顯示controller的畫面
+        [self presentViewController:controller animated:YES completion:Nil];
+    }
+}
+
+//使用者完成操作時所呼叫的內建函式
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [controller dismissViewControllerAnimated:YES completion:Nil];
+    switch (result) {
+        case MessageComposeResultSent:
+            NSLog(@"訊息傳送成功");
+            //訊息傳送成功
+            break;
+            
+        case MessageComposeResultFailed:
+            NSLog(@"訊息傳送失敗");
+            //訊息傳送失敗
+            break;
+            
+        case MessageComposeResultCancelled:
+            NSLog(@"訊息被使用者取消傳送");
+            //訊息被使用者取消傳送
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - alert
 - (void)alertOfTitle:(NSString *)title andMsg:(NSString *)msg
 {
-    UIDevice *device = [UIDevice currentDevice];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)alertOfTextTitle:(NSString *)title do:(NSString *)actionStr textHint:(NSString *)textHint
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:actionStr preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.placeholder = textHint;
+    }];
     
-    if ([device.systemVersion floatValue]>=8.0) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *temp = alertController.textFields.firstObject;
+        
+        if ([actionStr isEqualToString:@"SMS"]) {
+            [self sms:temp.text];
+        }
+    }];
+    
+    [alertController addAction:submitAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MFMailComposeViewController.h>
+//#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MessageUI.h>
 #import "infoViewController.h"
 
-@interface cusNaviController : UINavigationController<UINavigationControllerDelegate,MFMailComposeViewControllerDelegate>
+@interface cusNaviController : UINavigationController<UINavigationControllerDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *pushtoken;
 

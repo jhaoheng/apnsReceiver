@@ -32,6 +32,7 @@
 		9207CB021DB25D2700393857 /* infoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
 		9207CB041DB2659600393857 /* cusNaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cusNaviController.h; sourceTree = "<group>"; };
 		9207CB051DB2659600393857 /* cusNaviController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cusNaviController.m; sourceTree = "<group>"; };
+		9207CB0D1DB27C3600393857 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9247AE1D1D011FF3006B5050 /* http_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_manager.h; sourceTree = "<group>"; };
 		9247AE1E1D011FF3006B5050 /* http_manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = http_manager.m; sourceTree = "<group>"; };
 		92F16C441CAAE60F00D3FE0B /* apnsReceiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apnsReceiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9207CB0C1DB27C3500393857 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9207CB0D1DB27C3600393857 /* MessageUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9247AE1C1D011FF3006B5050 /* httpManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +100,7 @@
 				92F16C971CAB7EE100D3FE0B /* kit */,
 				92F16C461CAAE60F00D3FE0B /* apnsReceiver */,
 				92F16C451CAAE60F00D3FE0B /* Products */,
+				9207CB0C1DB27C3500393857 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
