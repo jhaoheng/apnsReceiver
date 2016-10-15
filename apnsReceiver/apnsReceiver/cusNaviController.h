@@ -10,8 +10,13 @@
 //#import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MessageUI.h>
 #import "infoViewController.h"
+#import "http_manager.h"
 
-@interface cusNaviController : UINavigationController<UINavigationControllerDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+@interface cusNaviController : UINavigationController<UINavigationControllerDelegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate,httpFinishDelegate>
+{
+    UIActivityIndicatorView *indicatorView;
+    UIView *maskView;
+}
 
 @property (nonatomic, strong) NSString *pushtoken;
 

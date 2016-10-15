@@ -69,25 +69,26 @@
     [alertController addAction:emailAction];
     
     UIAlertAction *smsAction = [UIAlertAction actionWithTitle:@"SMS" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        [self sms];
-        [self alertOfTextTitle:@"Send token" do:@"SMS" textHint:@"Enter phone number"];
+        [self alertOfTextTitle:@"SMS" explain:@"will send token by sms" textHint:@"Phone Number 0919.."];
     }];
     [alertController addAction:smsAction];
     
-    UIAlertAction *apiAction = [UIAlertAction actionWithTitle:@"API" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *apiAction = [UIAlertAction actionWithTitle:@"API" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self alertOfTextTitle:@"API" explain:@"Server can be start with `node index.js` and it will send to rest api : `http://{your_ip_address}/pushtoken`" textHint:@"IP Address 192.168.x.x"];
+    }];
     [alertController addAction:apiAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark copy
+#pragma mark - copy
 - (void)copyToken{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = _pushtoken;
     [self alertOfTitle:@"" andMsg:@"Copy Token to clipboard!"];
 }
 
-#pragma mark email
+#pragma mark - email
 - (void)mail_pass_activity:(id)sender
 {
     
@@ -112,12 +113,14 @@
 
 
 // Then implement the delegate method
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark sms
+#pragma mark - sms
 //觸發的btn
 - (void)sms:(NSString *)phoneNumber
 {
@@ -164,6 +167,56 @@
     }
 }
 
+#pragma mark - API
+- (void)api:(NSString *)ip_address
+{
+    [self indicatorManager:YES];
+    NSString *urlStr = [NSString stringWithFormat:@"http://%@/pushtoken/%@",ip_address,_pushtoken];
+    
+    http_manager *_manager = [http_manager shared];
+    _manager._delegate = self;
+    
+    [_manager sendDataOfRequest:[_manager method_getFormatAndUrlIs:urlStr andParameters:nil]];
+}
+
+#pragma mark http delegate
+- (void)http_finish_response:(NSURLResponse *)response :(id)responseObject :(NSError *)error
+{
+    
+    [self indicatorManager:NO];
+    
+    if (error) {
+        NSLog(@"Error: %@", error);
+        [self alertOfTitle:@"Error!" andMsg:@"Something wrong."];
+    } else {
+        NSLog(@"http return : %@ %@", response, responseObject);
+        [self alertOfTitle:@"Success" andMsg:@"You can see the token on cmd line"];
+    }
+}
+
+#pragma mark indicator view manager
+- (void)indicatorManager:(bool)isLoading
+{
+    if (indicatorView==NULL) {
+        
+        maskView = [[UIView alloc] initWithFrame:self.view.frame];
+        maskView.backgroundColor = [UIColor colorWithWhite:.7 alpha:.7];
+        [self.view addSubview:maskView];
+        
+        indicatorView = [[UIActivityIndicatorView alloc] init];
+        indicatorView.center = self.view.center;
+        indicatorView.hidesWhenStopped = YES;
+        [self.view addSubview:indicatorView];
+    }
+    
+    if (isLoading) {
+        maskView.alpha = 1;
+        [indicatorView startAnimating];
+    }else{
+        maskView.alpha = 0;
+        [indicatorView stopAnimating];
+    }
+}
 
 #pragma mark - alert
 - (void)alertOfTitle:(NSString *)title andMsg:(NSString *)msg
@@ -174,9 +227,9 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)alertOfTextTitle:(NSString *)title do:(NSString *)actionStr textHint:(NSString *)textHint
+- (void)alertOfTextTitle:(NSString *)actionStr explain:(NSString *)explain textHint:(NSString *)textHint
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:actionStr preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:actionStr message:explain preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
         textField.placeholder = textHint;
     }];
@@ -187,9 +240,16 @@
         if ([actionStr isEqualToString:@"SMS"]) {
             [self sms:temp.text];
         }
+        else if ([actionStr isEqualToString:@"API"]){
+            [self api:temp.text];
+        }
     }];
-    
     [alertController addAction:submitAction];
+    
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancel];
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
