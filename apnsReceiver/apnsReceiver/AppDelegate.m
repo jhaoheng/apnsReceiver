@@ -33,7 +33,7 @@
     baseView = [[ViewController alloc] init];
     infoView = [[infoViewController alloc] init];
     
-    cusNaviController *navi = [[cusNaviController alloc] initWithRootViewController:baseView];
+    navi = [[cusNaviController alloc] initWithRootViewController:baseView];
     self.window.rootViewController = navi;
     
     return YES;
@@ -103,6 +103,7 @@
     /* 可以把token傳到server，之後server就可以靠它送推播給使用者了 */
     
     baseView.passToken = strDevToken;
+    navi.pushtoken = strDevToken;
     
 }
 

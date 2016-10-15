@@ -133,35 +133,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - pass token
-- (void)mail_pass_activity:(id)sender
-{
-    
-    NSString *subject = [NSString stringWithFormat:@"Hello,this is '%@ token'",[UIDevice currentDevice].name];
-    NSString *msg = [NSString stringWithFormat:@"DeviceToken is : \n\n%@",_passToken];
-    
-    MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
-    mailCont.mailComposeDelegate = self;
-    
-    [mailCont setSubject:subject];
-    //    [mailCont setToRecipients:[NSArray arrayWithObject:@""]];
-    [mailCont setMessageBody:msg isHTML:NO];
-    
-    if ([MFMailComposeViewController canSendMail]) {
-        [self presentViewController:mailCont animated:YES completion:nil];
-    }
-    else
-    {
-        [self alertOfTitle:@"" andMsg:@"Device mail not ready!"];
-    }
-}
 
-
-// Then implement the delegate method
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - uiscroll view : log view
 - (void)init_logView

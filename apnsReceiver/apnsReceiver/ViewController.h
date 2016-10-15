@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
 #import "http_manager.h"
-#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ViewController : UIViewController<MFMailComposeViewControllerDelegate,httpFinishDelegate>
+@interface ViewController : UIViewController<httpFinishDelegate>
 {
     
     //

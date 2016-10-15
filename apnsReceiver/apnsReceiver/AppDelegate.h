@@ -14,6 +14,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    cusNaviController *navi;
     ViewController *baseView;
     infoViewController *infoView;
 }
