@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
-#import "http_manager.h"
 
-@interface ViewController : UIViewController<httpFinishDelegate>
+@interface ViewController : UIViewController
 {
     
     //
     UILabel *netStatus_label;
     UIImageView *netStatusImg;
     
-    UIActivityIndicatorView *indicatorView;
-    UIView *maskView;
 }
 
 @property (nonatomic, retain) NSString *passToken;

@@ -194,37 +194,6 @@
     [self init_logView];
 }
 
-#pragma mark - apiToken_activity
-- (void)api_send_activity:(id)sender
-{
-    /*
-     1. 透過直接呼叫 api 的方式 寫入 token
-     2. http://phptraining:8888/get_receive.php?key1=_passToken
-     */
-    
-    
-    [self indicatorManager:YES];
-    NSString *urlStr = @"http://huder.link/max/phpTraining/get_receive.php";
-    
-    NSDictionary *p = [[NSDictionary alloc] initWithObjectsAndKeys:_passToken,@"key1", nil];
-    
-    http_manager *_manager = [http_manager shared];
-    _manager._delegate = self;
-    
-    [_manager sendDataOfRequest:[_manager method_getFormatAndUrlIs:urlStr andParameters:p]];
-    
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_async(queue, ^{
-//        
-//        
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self indicatorManager:NO];
-//        });
-//    });
-    
-}
-
 #pragma mark - alert
 - (void)alertOfTitle:(NSString *)title andMsg:(NSString *)msg
 {
@@ -236,49 +205,9 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
-#pragma mark - http delegate
-- (void)http_finish_response:(NSURLResponse *)response :(id)responseObject :(NSError *)error
-{
-    
-    [self indicatorManager:NO];
-    
-    if (error) {
-        NSLog(@"Error: %@", error);
-    } else {
-        NSLog(@"http return : %@ %@", response, responseObject);
-    }
-}
 
-#pragma mark - indicator view manager
-- (void)indicatorManager:(bool)isLoading
-{
-    if (indicatorView==NULL) {
-        
-        maskView = [[UIView alloc] initWithFrame:self.view.frame];
-        maskView.backgroundColor = [UIColor colorWithWhite:.7 alpha:.7];
-        [self.view addSubview:maskView];
-        
-        indicatorView = [[UIActivityIndicatorView alloc] init];
-        indicatorView.center = self.view.center;
-        indicatorView.hidesWhenStopped = YES;
-        [self.view addSubview:indicatorView];
-    }
-    
-    if (isLoading) {
-        maskView.alpha = 1;
-        [indicatorView startAnimating];
-    }else{
-        maskView.alpha = 0;
-        [indicatorView stopAnimating];
-    }
-}
 
 
 
