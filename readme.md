@@ -31,7 +31,7 @@
 
 ### main view
 
-![img](assets/img_7.png)
+![img](assets/img_7-1.png)
 
 ### info view
 
