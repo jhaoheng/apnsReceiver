@@ -79,7 +79,9 @@
 
 #pragma mark copy
 - (void)copyToken{
-    NSLog(@"%@",_pushtoken);
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = _pushtoken;
+    [self alertOfTitle:@"" andMsg:@"Copy Token to clipboard!"];
 }
 
 #pragma mark email
