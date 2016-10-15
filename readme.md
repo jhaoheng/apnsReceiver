@@ -31,11 +31,11 @@
 
 ### main view
 
-![img](assets/img_41.png)
+![img](assets/img_7.png)
 
 ### info view
 
-![img](assets/img_51.png)
+![img](assets/img_8.png)
 
 ### send view
-![img](assets/img_61.png)
+![img](assets/img_9.png)
