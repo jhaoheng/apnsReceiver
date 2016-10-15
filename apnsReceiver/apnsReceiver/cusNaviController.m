@@ -102,7 +102,7 @@
     //    [mailCont setToRecipients:[NSArray arrayWithObject:@""]];
     [mailCont setMessageBody:msg isHTML:NO];
     
-    if (![MFMailComposeViewController canSendMail]) {
+    if ([MFMailComposeViewController canSendMail]) {
         [self presentViewController:mailCont animated:YES completion:nil];
     }
     else
