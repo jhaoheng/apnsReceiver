@@ -80,7 +80,7 @@
         }
     }
     
-    NSString *provision;
+    NSString *provision = @"Can't find Porvision";
     if (provisioningProfile) {
         NSDictionary* plist = [NSPropertyListSerialization propertyListWithData:provisioningProfile
                                                                         options:NSPropertyListImmutable
