@@ -54,7 +54,24 @@
 
 #pragma mark - send
 - (void)send:(id)sneder{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Send Token" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    
+    UIAlertAction *copyAction = [UIAlertAction actionWithTitle:@"Copy" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:copyAction];
+    
+    UIAlertAction *emailAction = [UIAlertAction actionWithTitle:@"Email" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:emailAction];
+    
+    UIAlertAction *smsAction = [UIAlertAction actionWithTitle:@"SMS" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:smsAction];
+    
+    UIAlertAction *apiAction = [UIAlertAction actionWithTitle:@"API" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:apiAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
