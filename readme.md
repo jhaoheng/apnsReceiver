@@ -27,6 +27,13 @@
 	- api (need use run nodejs server, see repo package `nodejs_rest`)
 3. see Notificaion info
 
+## How to start api server : nodejs_rest
+
+- `cd /{path}/apnsReceiver/nodejs_rest`
+- `node index.js`
+- Test curl : `curl -X GET http://localhost:1112/pushtoken/123456789`
+- Get your localhost ip address and set it to app -> send -> api -> ip_address:port
+
 ## view
 
 ### main view

@@ -74,7 +74,7 @@
     [alertController addAction:smsAction];
     
     UIAlertAction *apiAction = [UIAlertAction actionWithTitle:@"API" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self alertOfTextTitle:@"API" explain:@"Server can be start with `node index.js` and it will send to rest api : `http://{your_ip_address}/pushtoken`" textHint:@"IP Address 192.168.x.x"];
+        [self alertOfTextTitle:@"API" explain:@"Server can be start with `node index.js` and it will send to rest api : `http://{host}:{port}/pushtoken`" textHint:@"IP Address 192.168.x.x:1112"];
     }];
     [alertController addAction:apiAction];
     
@@ -168,10 +168,10 @@
 }
 
 #pragma mark - API
-- (void)api:(NSString *)ip_address
+- (void)api:(NSString *)host
 {
     [self indicatorManager:YES];
-    NSString *urlStr = [NSString stringWithFormat:@"http://%@/pushtoken/%@",ip_address,_pushtoken];
+    NSString *urlStr = [NSString stringWithFormat:@"http://%@/pushtoken/%@",host,_pushtoken];
     
     http_manager *_manager = [http_manager shared];
     _manager._delegate = self;
