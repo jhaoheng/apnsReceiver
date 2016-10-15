@@ -29,6 +29,13 @@
 
 ## view
 
-![img](assets/img_1.png)
-![img](assets/img_2.png)
-![img](assets/img_3.png)
+### main view
+
+![img](assets/img_41.png)
+
+### info view
+
+![img](assets/img_51.png)
+
+### send view
+![img](assets/img_61.png)
