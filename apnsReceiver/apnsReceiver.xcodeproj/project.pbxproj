@@ -19,8 +19,6 @@
 		92F16CA91CAB7EE100D3FE0B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16CA11CAB7EE100D3FE0B /* AFURLRequestSerialization.m */; };
 		92F16CAA1CAB7EE100D3FE0B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16CA31CAB7EE100D3FE0B /* AFURLResponseSerialization.m */; };
 		92F16CAB1CAB7EE100D3FE0B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16CA51CAB7EE100D3FE0B /* AFURLSessionManager.m */; };
-		92F16CB01CAB8C6C00D3FE0B /* slideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16CAF1CAB8C6C00D3FE0B /* slideViewController.m */; };
-		92F16CB31CAB8DBF00D3FE0B /* cusNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F16CB21CAB8DBF00D3FE0B /* cusNaviController.m */; };
 		92F16CB61CAB94EA00D3FE0B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F16CB51CAB94EA00D3FE0B /* menu.png */; };
 		92F16CBA1CABA67300D3FE0B /* icon_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F16CB71CABA67300D3FE0B /* icon_blue.png */; };
 		92F16CBB1CABA67300D3FE0B /* icon_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F16CB81CABA67300D3FE0B /* icon_green.png */; };
@@ -52,10 +50,6 @@
 		92F16CA31CAB7EE100D3FE0B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		92F16CA41CAB7EE100D3FE0B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		92F16CA51CAB7EE100D3FE0B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		92F16CAE1CAB8C6C00D3FE0B /* slideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slideViewController.h; sourceTree = "<group>"; };
-		92F16CAF1CAB8C6C00D3FE0B /* slideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = slideViewController.m; sourceTree = "<group>"; };
-		92F16CB11CAB8DBF00D3FE0B /* cusNaviController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cusNaviController.h; sourceTree = "<group>"; };
-		92F16CB21CAB8DBF00D3FE0B /* cusNaviController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cusNaviController.m; sourceTree = "<group>"; };
 		92F16CB51CAB94EA00D3FE0B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		92F16CB71CABA67300D3FE0B /* icon_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blue.png; sourceTree = "<group>"; };
 		92F16CB81CABA67300D3FE0B /* icon_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_green.png; sourceTree = "<group>"; };
@@ -110,8 +104,6 @@
 				92F16C4B1CAAE60F00D3FE0B /* AppDelegate.m */,
 				92F16C4D1CAAE60F00D3FE0B /* ViewController.h */,
 				92F16C4E1CAAE60F00D3FE0B /* ViewController.m */,
-				92F16CB11CAB8DBF00D3FE0B /* cusNaviController.h */,
-				92F16CB21CAB8DBF00D3FE0B /* cusNaviController.m */,
 				92F16C531CAAE60F00D3FE0B /* Assets.xcassets */,
 				92F16C581CAAE60F00D3FE0B /* Info.plist */,
 				92F16C471CAAE60F00D3FE0B /* Supporting Files */,
@@ -131,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				9247AE1C1D011FF3006B5050 /* httpManager */,
-				92F16CAD1CAB8C6C00D3FE0B /* slideMenu */,
 				92F16C981CAB7EE100D3FE0B /* AFNetworking */,
 			);
 			path = kit;
@@ -155,15 +146,6 @@
 				92F16CA51CAB7EE100D3FE0B /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		92F16CAD1CAB8C6C00D3FE0B /* slideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				92F16CAE1CAB8C6C00D3FE0B /* slideViewController.h */,
-				92F16CAF1CAB8C6C00D3FE0B /* slideViewController.m */,
-			);
-			path = slideMenu;
 			sourceTree = "<group>";
 		};
 		92F16CB41CAB94EA00D3FE0B /* resource */ = {
@@ -262,10 +244,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92F16CB01CAB8C6C00D3FE0B /* slideViewController.m in Sources */,
 				92F16CAB1CAB7EE100D3FE0B /* AFURLSessionManager.m in Sources */,
 				92F16C4F1CAAE60F00D3FE0B /* ViewController.m in Sources */,
-				92F16CB31CAB8DBF00D3FE0B /* cusNaviController.m in Sources */,
 				92F16C4C1CAAE60F00D3FE0B /* AppDelegate.m in Sources */,
 				92F16CA71CAB7EE100D3FE0B /* AFNetworkReachabilityManager.m in Sources */,
 				92F16C491CAAE60F00D3FE0B /* main.m in Sources */,

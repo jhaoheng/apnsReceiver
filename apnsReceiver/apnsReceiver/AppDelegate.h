@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cusNaviController.h"
 #import "AFNetworking.h"
 #import "ViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    ViewController *temp;
+    ViewController *baseView;
 }
 
 @property (strong, nonatomic) UIWindow *window;

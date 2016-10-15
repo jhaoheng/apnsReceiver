@@ -42,11 +42,11 @@
     application.idleTimerDisabled = YES;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-    temp = [[ViewController alloc] init];
+    baseView = [[ViewController alloc] init];
     
-    cusNaviController *navi = [[cusNaviController alloc] initWithRootViewController:temp];
-    navi.naviBtnOn = temp;//set cus btn
-    self.window.rootViewController = navi;
+//    cusNaviController *navi = [[cusNaviController alloc] initWithRootViewController:temp];
+//    navi.naviBtnOn = temp;//set cus btn
+    self.window.rootViewController = baseView;
     
     return YES;
 }
@@ -73,7 +73,7 @@
      */
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        temp.net_status = AFStringFromNetworkReachabilityStatus(status);
+        baseView.net_status = AFStringFromNetworkReachabilityStatus(status);
         
     }];
     
@@ -114,7 +114,7 @@
     
     /* 可以把token傳到server，之後server就可以靠它送推播給使用者了 */
     
-    temp.passToken = strDevToken;
+    baseView.passToken = strDevToken;
     
 }
 
@@ -124,7 +124,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"%@",userInfo);
-    temp.passUserInfo = userInfo;
+    baseView.passUserInfo = userInfo;
 }
 
 

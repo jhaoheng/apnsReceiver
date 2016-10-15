@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "slideViewController.h"
 #import "AFNetworking.h"
 #import "http_manager.h"
-#import "cusNaviController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface ViewController : UIViewController<MFMailComposeViewControllerDelegate,slideMenuDelegate,httpFinishDelegate>
+@interface ViewController : UIViewController<MFMailComposeViewControllerDelegate,httpFinishDelegate>
 {
-    slideViewController *slide;
     
     //
     UILabel *netStatus_label;

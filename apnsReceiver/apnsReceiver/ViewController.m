@@ -125,9 +125,6 @@
     
     //log scroll view
     [self init_logView];
-    
-    //
-    [self init_slideView];
  
     //
     self.title = [self check_Mobileprovision];
@@ -273,44 +270,6 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil];
         [alert show];
-    }
-}
-
-#pragma mark - slide
-- (void)init_slideView
-{
-    NSArray *menuArray;
-    menuArray = [[NSArray alloc] initWithObjects:
-                 @"Local_Mail_send",
-                 @"Api_send",
-                 @"leak",
-                 nil];
-    menuArray = [[NSArray alloc] initWithObjects:
-                 NSLocalizedString(@"local_Mail_send", ""),
-                 NSLocalizedString(@"Api_send", ""),
-                 NSLocalizedString(@"leak", ""),
-                 nil];
-    
-    //側邊欄主體
-    slide = [slideViewController slide_initAndBaseOn:self];
-    slide.passSideBtnAction_delegate = self;
-    slide.view.frame = CGRectMake(-self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height-49);
-    slide.menuArray = menuArray;
-    [self.view addSubview:slide.view];
-}
-
-- (void)didSlideSideBtnFeedback:(id)sender
-{
-    NSLog(@"delegate pass : %@",(NSMutableDictionary *)sender);
-    NSMutableDictionary *tempStr = (NSMutableDictionary *)sender;
-    if ([[tempStr objectForKey:@"id"] integerValue] == 0) {
-        [self mail_pass_activity:nil];
-    }
-    else if([[tempStr objectForKey:@"id"] integerValue] == 1){
-        [self api_send_activity:nil];
-    }
-    else if([[tempStr objectForKey:@"id"] integerValue] == 2){
-        [self leak];
     }
 }
 
